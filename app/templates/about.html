@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}О проекте{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <h1 class="mb-4">О проекте</h1>
+        <p class="lead">Flask Blog это учебный блог, написанный в качестве итоговой работы по курсу python on web.</p>
+
+        <h2 class="h4 mt-4">Стек технологий</h2>
+        <ul>
+            <li><strong>Flask</strong> — веб-фреймворк, фабрика приложения, blueprint'ы</li>
+            <li><strong>SQLite + SQLAlchemy</strong> — база данных</li>
+            <li><strong>Flask-Login</strong> — управление сессиями пользователей</li>
+            <li><strong>Flask-WTF / WTForms</strong> — формы с валидацией</li>
+            <li><strong>Werkzeug</strong> — хеширование паролей</li>
+            <li><strong>Jinja2</strong> — шаблонизатор с наследованием шаблонов</li>
+            <li><strong>Bootstrap 5</strong> — CSS-фреймворк для оформления</li>
+        </ul>
+
+    </div>
+</div>
+{% endblock %}

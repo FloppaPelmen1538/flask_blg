@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="mb-1">{{ current_user.username }}</h1>
+        <p class="text-muted mb-0">{{ current_user.email }} · в проекте с {{ current_user.created_at.strftime('%d.%m.%Y') }}</p>
+    </div>
+    <a href="{{ url_for('posts.create') }}" class="btn btn-dark">+ Написать</a>
+</div>
+
+<h2 class="h4 mb-3">Мои записи <span class="badge bg-secondary">{{ posts|length }}</span></h2>
+
+{% if posts %}
+    <div class="list-group">
+        {% for post in posts %}
+            <div class="list-group-item">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h5 class="mb-1">
+                            <a href="{{ url_for('posts.detail', post_id=post.id) }}" class="text-decoration-none text-dark">
+                                {{ post.title }}
+                            </a>
+                        </h5>
+                        <small class="text-muted">{{ post.created_at.strftime('%d.%m.%Y, %H:%M') }}</small>
+                    </div>
+                    <div class="d-flex gap-2 ms-3">
+                        <a href="{{ url_for('posts.edit', post_id=post.id) }}" class="btn btn-sm btn-outline-secondary">Изменить</a>
+                        <form method="POST" action="{{ url_for('posts.delete', post_id=post.id) }}"
+                              onsubmit="return confirm('Удалить запись «{{ post.title }}»?');">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-sm btn-outline-danger">Удалить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-secondary">
+        Здесь будут ваши записи. <a href="{{ url_for('posts.create') }}">Написать первую</a>.
+    </div>
+{% endif %}
+{% endblock %}

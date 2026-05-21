@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Ошибка 500{% endblock %}
+{% block content %}
+<div class="text-center py-5">
+    <p class="error-code">500</p>
+    <h1 class="h3">Ошибка сервера</h1>
+    <p class="text-muted">Что-то пошло не так. Попробуйте позже.</p>
+    <a href="{{ url_for('main.index') }}" class="btn btn-dark">На главную</a>
+</div>
+{% endblock %}
